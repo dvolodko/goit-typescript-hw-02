@@ -1,0 +1,18 @@
+.tableRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tableRow:nth-child(2n) {
+  background-color: lightgray;
+}
+
+.tableData {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding-left: 32px;
+  padding-right: 32px;
+}

@@ -1,0 +1,23 @@
+.friendCardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.friendAvatar {
+  margin-bottom: 8px;
+}
+
+.friendName {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.friendStatus.online {
+  color: green;
+}
+
+.friendStatus.offline {
+  color: red;
+}
