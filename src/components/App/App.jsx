@@ -22,12 +22,18 @@ function App() {
     return initialState;
   });
 
+  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+  const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
+
   useEffect(() => {
     localStorage.setItem('feedback', JSON.stringify(feedback));
   }, [feedback]);
 
-  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
-  const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
+  useEffect(() => {
+    document.title = totalFeedback
+      ? `Positive feedback ${positiveFeedback}%`
+      : 'No feedback yet';
+  }, [positiveFeedback, totalFeedback]);
 
   function updateFeedback(feedbackType) {
     setFeedback({
