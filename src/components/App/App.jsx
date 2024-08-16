@@ -1,71 +1,23 @@
 import css from './App.module.css';
 import { useState, useEffect } from 'react';
-import Description from './Description/Description';
-import Options from '../Options/Options';
-import Feedback from '../Feedback/Feedback';
-import Notification from '../Notification/Notification';
-
-const initialState = {
-  good: 0,
-  neutral: 0,
-  bad: 0,
-};
+import ContactForm from '../ContactForm/ContactForm';
+// import SearchBox from '../SearchBox/SearchBox';
+import ContactList from '../ContactList/ContactList';
 
 function App() {
-  const [feedback, setFeedback] = useState(() => {
-    const storagedFeedback = localStorage.getItem('feedback');
-
-    if (storagedFeedback !== null) {
-      return JSON.parse(storagedFeedback);
-    }
-
-    return initialState;
-  });
-
-  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
-  const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
-
-  useEffect(() => {
-    localStorage.setItem('feedback', JSON.stringify(feedback));
-  }, [feedback]);
-
-  useEffect(() => {
-    document.title = totalFeedback
-      ? `Positive feedback ${positiveFeedback}%`
-      : 'No feedback yet';
-  }, [positiveFeedback, totalFeedback]);
-
-  function updateFeedback(feedbackType) {
-    setFeedback({
-      ...feedback,
-      [feedbackType]: feedback[feedbackType] + 1,
-    });
-  }
-
-  function resetFeedback() {
-    setFeedback(initialState);
-  }
+  const [contacts, setContacts] = useState([
+    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+  ]);
 
   return (
-    <div className={css.container}>
-      <Description />
-      <Options
-        options={Object.keys(feedback)}
-        setter={updateFeedback}
-        total={totalFeedback}
-        reset={resetFeedback}
-      />
-      {totalFeedback ? (
-        <Feedback
-          good={feedback.good}
-          neutral={feedback.neutral}
-          bad={feedback.bad}
-          total={totalFeedback}
-          positive={positiveFeedback}
-        />
-      ) : (
-        <Notification />
-      )}
+    <div>
+      <h1>Phonebook</h1>
+      <ContactForm />
+      {/* <SearchBox /> */}
+      <ContactList contacts={contacts} />
     </div>
   );
 }
