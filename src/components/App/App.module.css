@@ -11,6 +11,9 @@
   justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
-  scroll-snap-align: start;
   padding: 32px;
+}
+
+.title {
+  margin-bottom: 16px;
 }

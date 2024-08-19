@@ -1,0 +1,31 @@
+.contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 8px 16px;
+  min-width: 320px;
+}
+
+.contactText {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.deleteButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
