@@ -1,7 +1,7 @@
-.contactList {
+.gallery {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
 }
