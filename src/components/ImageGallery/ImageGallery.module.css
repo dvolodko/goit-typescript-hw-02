@@ -1,7 +1,3 @@
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
+.masonryContainer {
+  max-width: 1200px;
 }
