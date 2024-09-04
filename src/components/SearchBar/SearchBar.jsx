@@ -1,14 +1,15 @@
 import toast from 'react-hot-toast';
 
-export default function SearchBar({ onSubmit }) {
+export default function SearchBar({ onSubmit, reset }) {
   function submitHandler(e) {
     e.preventDefault();
     const query = e.target.elements.input.value.trim();
-    if (query) {
+    if (!query) {
+      toast.error('Search query can`t be empty', { position: 'top-right' });
+    } else {
+      reset();
       onSubmit(query);
       e.target.reset();
-    } else {
-      toast.error('Search query can`t be empty', { position: 'top-right' });
     }
   }
 
