@@ -6,6 +6,10 @@ import SearchBar from '../SearchBar/SearchBar';
 import toast, { Toaster } from 'react-hot-toast';
 import Loader from '../Loader/Loader';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import ReactModal from 'react-modal';
+import ImageModal from '../ImageModal/ImageModal';
+
+ReactModal.setAppElement('#root');
 
 function App() {
   const [images, setImages] = useState([]);
@@ -14,6 +18,9 @@ function App() {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalImage, setModalImage] = useState('');
+  const [modalAlt, setModalAlt] = useState('');
 
   useEffect(() => {
     async function fetchImagesHandler() {
@@ -54,6 +61,17 @@ function App() {
     setImages([]);
   }
 
+  function openModal(e) {
+    e.preventDefault();
+    setModalIsOpen(true);
+    setModalImage(e.currentTarget.href);
+    setModalAlt(e.target.alt);
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
+  }
+
   return (
     <div className={css.container}>
       <Toaster />
@@ -74,10 +92,23 @@ function App() {
               <b>Yay! You have seen it all</b>
             </p>
           }>
-          <ImageGallery images={images} />
+          <ImageGallery images={images} onModalOpen={openModal} />
         </InfiniteScroll>
       )}
       {loading && <Loader />}
+      <ReactModal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        className={css.modal}
+        overlayClassName={{
+          base: css.overlay,
+          afterOpen: css.overlayOpen,
+          beforeClose: css.overlayClose,
+        }}
+        bodyOpenClassName={css.body}
+        closeTimeoutMS={250}>
+        <ImageModal modalImage={modalImage} modalAlt={modalAlt} />
+      </ReactModal>
     </div>
   );
 }
