@@ -88,9 +88,7 @@ function App() {
           hasMore={!isLastPage}
           loader={<Loader />}
           endMessage={
-            <p style={{ textAlign: 'center' }}>
-              <b>Yay! You have seen it all</b>
-            </p>
+            <p className={css.endMessageText}>Yay! You have seen it all!</p>
           }>
           <ImageGallery images={images} onModalOpen={openModal} />
         </InfiniteScroll>
