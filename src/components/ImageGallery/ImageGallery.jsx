@@ -4,7 +4,12 @@ import css from './ImageGallery.module.css';
 
 export default function ImageGallery({ images, onModalOpen }) {
   return (
-    <Masonry columnsCount={3} gutter="16px" className={css.masonryContainer}>
+    <Masonry
+      columnsCount={3}
+      gutter="16px"
+      containerTag={'ul'}
+      itemTag={'li'}
+      className={css.masonryContainer}>
       {images.map((image) => (
         <div key={image.id}>
           <ImageCard
