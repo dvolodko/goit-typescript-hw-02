@@ -8,6 +8,7 @@ const config = {
     Authorization: `Client-ID ${KEY}`,
   },
   params: {
+    orientation: 'landscape',
     content_filter: 'low',
     per_page: 15,
   },

@@ -6,8 +6,10 @@ export default function ImageCard({
   onModalOpen,
 }) {
   return (
-    <a href={regular} onClick={onModalOpen}>
-      <img className={css.image} src={small} alt={altDescription}></img>
-    </a>
+    <img
+      className={css.image}
+      src={small}
+      alt={altDescription}
+      onClick={() => onModalOpen(regular, altDescription)}></img>
   );
 }

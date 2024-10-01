@@ -4,16 +4,19 @@ import css from './Loader.module.css';
 export default function Loader() {
   return (
     <ContentLoader
-      viewBox="0 0 820 450"
-      height={450}
-      width={820}
+      viewBox="0 0 1200 812"
+      height={812}
+      width={1200}
       className={css.loader}>
-      <rect x="10" y="10" rx="5" ry="5" width="260" height="140" />
-      <rect x="280" y="10" rx="5" ry="5" width="260" height="280" />
-      <rect x="550" y="10" rx="5" ry="5" width="260" height="140" />
-      <rect x="10" y="160" rx="5" ry="5" width="260" height="280" />
-      <rect x="280" y="300" rx="5" ry="5" width="260" height="140" />
-      <rect x="550" y="160" rx="5" ry="5" width="260" height="280" />
+      <rect x="0" y="0" rx="5" ry="5" width="389" height="260" />
+      <rect x="405" y="0" rx="5" ry="5" width="389" height="260" />
+      <rect x="810" y="0" rx="5" ry="5" width="389" height="260" />
+      <rect x="0" y="276" rx="5" ry="5" width="389" height="260" />
+      <rect x="405" y="276" rx="5" ry="5" width="389" height="260" />
+      <rect x="810" y="276" rx="5" ry="5" width="389" height="260" />
+      <rect x="0" y="552" rx="5" ry="5" width="389" height="260" />
+      <rect x="405" y="552" rx="5" ry="5" width="389" height="260" />
+      <rect x="810" y="552" rx="5" ry="5" width="389" height="260" />
     </ContentLoader>
   );
 }
