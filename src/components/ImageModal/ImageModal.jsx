@@ -22,7 +22,6 @@ export default function ImageModal({
       }}
       bodyOpenClassName={css.body}
       closeTimeoutMS={500}>
-      <ImageModal modalImage={modalImage} modalAlt={modalAlt} />
       <img src={modalImage} alt={modalAlt} className={css.image} />;
     </Modal>
   );
