@@ -8,16 +8,17 @@ import Loader from '../Loader/Loader';
 import ImageModal from '../ImageModal/ImageModal';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { ErrorType, ImageResult } from './App.types';
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [images, setImages] = useState<ImageResult[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<ErrorType>('');
   const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
-  const [isLastPage, setIsLastPage] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [page, setPage] = useState<number>(1);
+  const [isLastPage, setIsLastPage] = useState<boolean>(false);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState('');
   const [modalAlt, setModalAlt] = useState('');
 
@@ -26,8 +27,9 @@ function App() {
       try {
         setError(false);
         setLoading(true);
-        const data = await fetchImages(query, page);
+        const data = await fetchImages<ImageResult>(query, page);
         const results = data.results;
+
         if (page === 1) {
           if (results.length === 0) {
             toast('There is no results with this search query', {
@@ -42,12 +44,22 @@ function App() {
             duration: 4000,
           });
         }
+
         setIsLastPage(page >= data.total_pages);
         setImages((prevData) => [...prevData, ...results]);
-      } catch (error) {
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setErrorMessage(error.message);
+          toast.error(error.message, { position: 'top-right', duration: 4000 });
+        } else {
+          setErrorMessage('An unexpected error occurred');
+          toast.error('An unexpected error occurred', {
+            position: 'top-right',
+            duration: 4000,
+          });
+        }
+
         setError(true);
-        setErrorMessage(error.message);
-        toast.error(error.message, { position: 'top-right', duration: 4000 });
       } finally {
         setLoading(false);
       }
@@ -76,7 +88,7 @@ function App() {
     setPage((prevData) => prevData + 1);
   }
 
-  function openModal(imageUrl, alt) {
+  function openModal(imageUrl: string, alt: string): void {
     setModalIsOpen(true);
     setModalImage(imageUrl);
     setModalAlt(alt);
