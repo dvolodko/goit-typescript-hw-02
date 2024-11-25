@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 
 type ParamsTypes = {
   orientation: 'landscape' | 'portrait' | 'squarish';
@@ -17,7 +17,7 @@ type ApiTypes<T> = {
 const KEY: string = '7QaC31QWQatTvaiGVBFYsWoswGiVg-edIcET13XO0oA';
 axios.defaults.baseURL = 'https://api.unsplash.com/';
 
-const defaultConfig: AxiosRequestConfig<ParamsTypes> = {
+const defaultConfig = {
   headers: {
     'Accept-Version': 'v1',
     Authorization: `Client-ID ${KEY}`,
